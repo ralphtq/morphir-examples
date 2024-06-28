@@ -93,10 +93,15 @@ isOnshoreTest =
             cashflow
     in
     describe "Onshore vs Offshore tests"
-        [ test "All US" <| \_ -> isOnshore c |> Expect.true "Expected True"
-        , test "Cashflow EUR vs all USD" <| \_ -> isOnshore { c | currency = EUR } |> Expect.false "Expected False"
-        , test "LegalEntity AUS vs all USD" <| \_ -> isOnshore { c | legalEntity = LegalEntity "LE1" (Just AUS) } |> Expect.false "Expected False"
-        , test "Counterparty AUS vs all USD" <| \_ -> isOnshore { c | counterparty = Counterparty AUS "" "" } |> Expect.false "Expected False"
+        [ test "All US" <| \_ -> isOnshore c |> Expect.equal True
+        , test "Cashflow EUR vs all USD" <| \_ -> isOnshore { c | currency = EUR } |> Expect.equal False --  "Expected False"
+        , test "LegalEntity AUS vs all USD" <| \_ -> isOnshore { c | legalEntity = LegalEntity "LE1" (Just AUS) } |> Expect.equal False --  "Expected False"
+        , test "Counterparty AUS vs all USD" <| \_ -> isOnshore { c | counterparty = Counterparty AUS "" "" } |> Expect.equal False --  "Expected False"
+        , (\_ ->
+            isOnshore { c | counterparty = Counterparty USA "" "" }
+                |> Expect.equal True
+          )
+            |> test "Counterparty USA vs all USD"
         ]
 
 

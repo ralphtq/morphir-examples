@@ -291,7 +291,10 @@ classify cashflow centralBanks =
 
 isOnshore : Cashflow -> Bool
 isOnshore cashflow =
-    cashflow.legalEntity.country == Currency.country cashflow.currency && cashflow.legalEntity.country == Just cashflow.counterparty.country
+    cashflow.legalEntity.country
+        == Currency.country cashflow.currency
+        && cashflow.legalEntity.country
+        == Just cashflow.counterparty.country
 
 
 netCashUSD : Cashflow -> Float

@@ -87,10 +87,10 @@ centralBankToSubProductTest =
 isOnshoreTest : Test
 isOnshoreTest =
     describe "Onshore vs Offshore tests"
-        [ test "All US" <| \_ -> isOnshore USA USD USA |> Expect.true "Expected True"
-        , test "Cashflow EUR vs all USD" <| \_ -> isOnshore USA EUR USA |> Expect.false "Expected False"
-        , test "LegalEntity AUS vs all USD" <| \_ -> isOnshore AUS USD USA |> Expect.false "Expected False"
-        , test "Counterparty AUS vs all USD" <| \_ -> isOnshore USA USD AUS |> Expect.false "Expected False"
+        [ test "All US" <| \_ -> isOnshore USA USD USA |> Expect.equal True -- "Expected True"
+        , test "Cashflow EUR vs all USD" <| \_ -> isOnshore USA EUR USA |> Expect.equal False -- "Expected False"
+        , test "LegalEntity AUS vs all USD" <| \_ -> isOnshore AUS USD USA |> Expect.equal False --  "Expected False"
+        , test "Counterparty AUS vs all USD" <| \_ -> isOnshore USA USD AUS |> Expect.equal False --  "Expected False"
         ]
 
 

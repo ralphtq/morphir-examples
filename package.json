@@ -9,6 +9,7 @@
     "train-build-release": "train-build-release"
   },
   "devDependencies": {
+    "elm-test": "^0.19.1-revision12",
     "lobo": "^1.0.0"
   },
   "dependencies": {

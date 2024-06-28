@@ -40,16 +40,16 @@ rulesTest =
             { name = "zero", weight = 1, applies = \n -> n == 0 }
     in
     describe "Rules tests"
-        [ test "foo" <| \_ -> Expect.false "false" False
-        , test "isApplicable negative vs -1" <| \_ -> Expect.true "expected to apply for negative" (isApplicable -1 negative)
-        , test "isApplicable negative vs 0" <| \_ -> Expect.false "expected not to apply for zero" (isApplicable 0 negative)
-        , test "isApplicable negative vs 1" <| \_ -> Expect.false "expected not to apply for positive" (isApplicable 1 negative)
-        , test "isApplicable positive vs -1" <| \_ -> Expect.true "expected not to apply for negative" (isApplicable -1 negative)
-        , test "isApplicable positive vs 0" <| \_ -> Expect.false "expected to apply for zero" (isApplicable 0 negative)
-        , test "isApplicable positive vs 1" <| \_ -> Expect.false "expected not to apply for positive" (isApplicable 1 negative)
-        , test "isApplicable zero vs -1" <| \_ -> Expect.true "expected to not apply for negative" (isApplicable -1 negative)
-        , test "isApplicable zero vs 0" <| \_ -> Expect.false "expected not to apply for zero" (isApplicable 0 negative)
-        , test "isApplicable zero vs 1" <| \_ -> Expect.false "expected to apply for positive" (isApplicable 1 negative)
+        [ test "foo" <| \_ -> Expect.equal "False" (Debug.toString False)
+        , test "isApplicable negative vs -1" <| \_ -> Expect.equal True (isApplicable -1 negative) -- "expected to apply for negative"
+        , test "isApplicable negative vs 0" <| \_ -> Expect.equal False (isApplicable 0 negative) -- "expected not to apply for zero"
+        , test "isApplicable negative vs 1" <| \_ -> Expect.equal False  (isApplicable 1 negative) --  "expected not to apply for positive"
+        , test "isApplicable positive vs -1" <| \_ -> Expect.equal True  (isApplicable -1 negative)  --  "expected not to apply for negative"
+        , test "isApplicable positive vs 0" <| \_ -> Expect.equal False  (isApplicable 0 negative) -- "expected to apply for zero"
+        , test "isApplicable positive vs 1" <| \_ -> Expect.equal False   (isApplicable 1 negative) --  "expected not to apply for positive"
+        , test "isApplicable zero vs -1" <| \_ -> Expect.equal True   (isApplicable -1 negative) -- "expected to not apply for negative"
+        , test "isApplicable zero vs 0" <| \_ -> Expect.equal False   (isApplicable 0 negative) -- "expected not to apply for zero"
+        , test "isApplicable zero vs 1" <| \_ -> Expect.equal False  (isApplicable 1 negative) --  "expected to apply for positive"
         , test "findApplicable for -1" <| \_ -> Expect.equal (Just negative) (findApplicable -1 [ negative, positive, zero ])
         , test "findApplicable for 1" <| \_ -> Expect.equal (Just positive) (findApplicable 1 [ negative, positive, zero ])
         , test "findApplicable for 0" <| \_ -> Expect.equal (Just zero) (findApplicable 0 [ negative, positive, zero ])
