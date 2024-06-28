@@ -94,18 +94,18 @@ aqt1risk productA productB productC =
     numerator / denominator
 
 
-lcr : (Flow -> Counterparty) -> (ProductId -> Product) -> LocalDate -> (LocalDate -> List Flow) -> Balance -> Ratio
-lcr toCounterparty product t flowsForDate reserveBalanceRequirement =
-    let
-        hqla : Balance
-        hqla =
-            hqlaAmount product (flowsForDate t) reserveBalanceRequirement
+-- lcr : (Flow -> Counterparty) -> (ProductId -> Product) -> LocalDate -> (LocalDate -> List Flow) -> Balance -> Ratio
+-- lcr toCounterparty product t flowsForDate reserveBalanceRequirement =
+--     let
+--         hqla : Balance
+--         hqla =
+--             hqlaAmount product (flowsForDate t) reserveBalanceRequirement
 
-        totalNetCashOutflow : Balance
-        totalNetCashOutflow =
-            totalNetCashOutflowAmount toCounterparty t flowsForDate
-    in
-    hqla / totalNetCashOutflow
+--         totalNetCashOutflow : Balance
+--         totalNetCashOutflow =
+--             totalNetCashOutflowAmount toCounterparty t flowsForDate
+--     in
+--     hqla / totalNetCashOutflow
 
 
 
